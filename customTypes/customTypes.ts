@@ -3,7 +3,7 @@ export interface Player {
   turns: turn[];
 }
 
-export type turn = [string?, string?];
+export type turn = [string, string?];
 
 export interface PlayersProps {
   players: Player[];

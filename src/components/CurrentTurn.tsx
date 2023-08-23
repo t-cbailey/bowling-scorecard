@@ -19,9 +19,13 @@ function CurrentTurn({
       alert("max score is 10!");
     } else {
       setPlayers((curr: Player[]) => {
-        if (targetName === "X") {
-          curr[playerIndex].turns.push(["X", "-"]);
-          setButtonsDisabled(true);
+        if (targetName === "10") {
+          if (Array.isArray(curr[playerIndex].turns[frameCount])) {
+            curr[playerIndex].turns[frameCount].push("10");
+          } else {
+            curr[playerIndex].turns.push(["10", "0"]);
+            setButtonsDisabled(true);
+          }
           return [...curr];
         }
         if (Array.isArray(curr[playerIndex].turns[frameCount])) {
@@ -41,20 +45,29 @@ function CurrentTurn({
     }
   }, [turnCount]);
 
+  const convertNumbers = (input: string | undefined) => {
+    if (input === "10") {
+      return "X";
+    }
+    if (input === "0") {
+      return "-";
+    } else return input;
+  };
+
   return (
     <>
       <div>
         {players[playerIndex].turns[frameCount] &&
-          players[playerIndex].turns[frameCount][0]}
+          convertNumbers(players[playerIndex].turns[frameCount][0])}
       </div>
       <div>
         {players[playerIndex].turns[frameCount] &&
-          players[playerIndex].turns[frameCount][1]}
+          convertNumbers(players[playerIndex].turns[frameCount][1])}
       </div>
       <ol>
         <button
           disabled={buttonsDisabled}
-          value={"-"}
+          value={"0"}
           onClick={handleScoreSelect}
         >
           0
@@ -124,7 +137,7 @@ function CurrentTurn({
         </button>
         <button
           disabled={buttonsDisabled}
-          value={"X"}
+          value={"10"}
           onClick={handleScoreSelect}
         >
           X
