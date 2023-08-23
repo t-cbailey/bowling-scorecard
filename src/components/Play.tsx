@@ -42,9 +42,10 @@ function Play({ players, setPlayers }: PlayProps) {
     return (
       <>
         <h1>Play!</h1>
-        <h2>{`Frame ${frameCount}`} </h2>
+        <h2>{`Frame ${frameCount + 1}`} </h2>
         <h2>{`${currentPlayer}'s turn`}</h2>
         <CurrentTurn
+          players={players}
           setTurnCount={setTurnCount}
           frameCount={frameCount}
           setPlayers={setPlayers}

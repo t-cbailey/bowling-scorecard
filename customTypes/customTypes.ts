@@ -30,6 +30,7 @@ export interface CurrentTurnProps {
   turnCount: turnCount;
   buttonsDisabled: boolean | undefined;
   setButtonsDisabled: Function;
+  players: Player[];
 }
 
 export type turnCount = 0 | 1 | 2;

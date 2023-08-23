@@ -2,6 +2,7 @@ import React from "react";
 import { CurrentTurnProps, Player } from "../../customTypes/customTypes";
 
 function CurrentTurn({
+  players,
   setTurnCount,
   frameCount,
   setPlayers,
@@ -10,25 +11,28 @@ function CurrentTurn({
   buttonsDisabled,
   setButtonsDisabled,
 }: CurrentTurnProps) {
-  console.log(turnCount);
-
   const handleScoreSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     const targetName = (e.target as HTMLButtonElement).value;
 
-    setPlayers((curr: Player[]) => {
-      if (targetName === "X") {
-        curr[playerIndex].turns.push(["10", "0"]);
-        setButtonsDisabled(true);
+    if (+targetName + +players[playerIndex].turns[frameCount] > 10) {
+      setTurnCount(1);
+      alert("max score is 10!");
+    } else {
+      setPlayers((curr: Player[]) => {
+        if (targetName === "X") {
+          curr[playerIndex].turns.push(["X", "-"]);
+          setButtonsDisabled(true);
+          return [...curr];
+        }
+        if (Array.isArray(curr[playerIndex].turns[frameCount])) {
+          curr[playerIndex].turns[frameCount].push(targetName);
+        } else {
+          curr[playerIndex].turns.push([targetName]);
+        }
         return [...curr];
-      }
-      if (Array.isArray(curr[playerIndex].turns[frameCount])) {
-        curr[playerIndex].turns[frameCount].push(targetName);
-      } else {
-        curr[playerIndex].turns.push([targetName]);
-      }
-      return [...curr];
-    });
-    setTurnCount(turnCount + 1);
+      });
+      setTurnCount(turnCount + 1);
+    }
   };
 
   React.useEffect(() => {
@@ -39,75 +43,81 @@ function CurrentTurn({
 
   return (
     <>
-      <div>{}</div>
-      <div>BOX WITH TURN 2</div>
+      <div>
+        {players[playerIndex].turns[frameCount] &&
+          players[playerIndex].turns[frameCount][0]}
+      </div>
+      <div>
+        {players[playerIndex].turns[frameCount] &&
+          players[playerIndex].turns[frameCount][1]}
+      </div>
       <ol>
         <button
           disabled={buttonsDisabled}
-          value={1}
+          value={"-"}
           onClick={handleScoreSelect}
         >
           0
         </button>
         <button
           disabled={buttonsDisabled}
-          value={1}
+          value={"1"}
           onClick={handleScoreSelect}
         >
           1
         </button>
         <button
           disabled={buttonsDisabled}
-          value={2}
+          value={"2"}
           onClick={handleScoreSelect}
         >
           2
         </button>
         <button
           disabled={buttonsDisabled}
-          value={3}
+          value={"3"}
           onClick={handleScoreSelect}
         >
           3
         </button>
         <button
           disabled={buttonsDisabled}
-          value={4}
+          value={"4"}
           onClick={handleScoreSelect}
         >
           4
         </button>
         <button
           disabled={buttonsDisabled}
-          value={5}
+          value={"5"}
           onClick={handleScoreSelect}
         >
           5
         </button>
         <button
           disabled={buttonsDisabled}
-          value={6}
+          value={"6"}
           onClick={handleScoreSelect}
         >
           6
         </button>
         <button
           disabled={buttonsDisabled}
-          value={7}
+          value={"7"}
           onClick={handleScoreSelect}
         >
           7
         </button>
         <button
           disabled={buttonsDisabled}
-          value={8}
+          value={"8"}
           onClick={handleScoreSelect}
         >
           8
         </button>
         <button
           disabled={buttonsDisabled}
-          value={9}
+          value={"9"}
           onClick={handleScoreSelect}
         >
           9
