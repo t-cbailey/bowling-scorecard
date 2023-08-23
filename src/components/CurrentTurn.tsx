@@ -16,6 +16,11 @@ function CurrentTurn({
     const targetName = (e.target as HTMLButtonElement).value;
 
     setPlayers((curr: Player[]) => {
+      if (targetName === "X") {
+        curr[playerIndex].turns.push(["10", "0"]);
+        setButtonsDisabled(true);
+        return [...curr];
+      }
       if (Array.isArray(curr[playerIndex].turns[frameCount])) {
         curr[playerIndex].turns[frameCount].push(targetName);
       } else {
@@ -23,14 +28,6 @@ function CurrentTurn({
       }
       return [...curr];
     });
-
-    if (targetName === "X") {
-      setPlayers((curr: Player[]) => {
-        curr[playerIndex].turns[frameCount].push("0");
-        return [...curr];
-      });
-      setButtonsDisabled(true);
-    }
     setTurnCount(turnCount + 1);
   };
 
@@ -45,6 +42,13 @@ function CurrentTurn({
       <div>{}</div>
       <div>BOX WITH TURN 2</div>
       <ol>
+        <button
+          disabled={buttonsDisabled}
+          value={1}
+          onClick={handleScoreSelect}
+        >
+          0
+        </button>
         <button
           disabled={buttonsDisabled}
           value={1}
