@@ -16,7 +16,7 @@ function GameOver({
   const handleReset = () => {
     setPlayers([]);
     setFrameCount(0);
-    navigate("/players");
+    navigate("/");
   };
   return (
     <>

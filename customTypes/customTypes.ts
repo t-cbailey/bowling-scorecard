@@ -1,9 +1,9 @@
 export interface Player {
   name: string;
-  turns?: turn[];
+  turns: turn[];
 }
 
-type turn = [number | "X" | "/", number | "X" | "/"];
+export type turn = [string?, string?];
 
 export interface PlayersProps {
   players: Player[];
@@ -21,3 +21,15 @@ export interface GameOverProps {
   setPlayers: Function;
   setFrameCount: Function;
 }
+
+export interface CurrentTurnProps {
+  setTurnCount: Function;
+  frameCount: number;
+  setPlayers: Function;
+  playerIndex: number;
+  turnCount: turnCount;
+  buttonsDisabled: boolean | undefined;
+  setButtonsDisabled: Function;
+}
+
+export type turnCount = 0 | 1 | 2;

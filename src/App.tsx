@@ -8,10 +8,12 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [players, setPlayers] = React.useState<Player[]>([
-    { name: "tim" },
-    { name: "aimee" },
-    { name: "teddy" },
+    { name: "tim", turns: [] },
+    { name: "aimee", turns: [] },
+    { name: "teddy", turns: [] },
   ]);
+
+  console.log(players);
   return (
     <>
       <h1>Bowling Score Calculator!</h1>
