@@ -1,12 +1,10 @@
 import React from "react";
+import { PlayersProps } from "../../customTypes/customTypes";
+import { useNavigate } from "react-router-dom";
 
-function Players() {
-  interface player {
-    name: string;
-  }
-
-  const [players, setPlayers] = React.useState<player[]>([]);
+function Players({ players, setPlayers }: PlayersProps) {
   const [name, setName] = React.useState("");
+  const navigate = useNavigate();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -34,6 +32,9 @@ function Players() {
     );
   };
 
+  const handleStartGame = () => {
+    navigate("/play");
+  };
   return (
     <>
       <h1>players</h1>
@@ -52,6 +53,7 @@ function Players() {
         <input type="text" value={name} onChange={handleNameChange} />
         <button onClick={addPlayer}>Add</button>
       </form>
+      <button onClick={handleStartGame}>Start Game!</button>
     </>
   );
 }
