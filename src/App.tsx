@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import Players from "./components/Players";
 import Home from "./components/Home";
 import Play from "./components/Play";
@@ -12,20 +12,34 @@ function App() {
     { name: "aimee", turns: [] },
     { name: "teddy", turns: [] },
   ]);
+  const [frameCount, setFrameCount] = React.useState<number>(0);
 
-  console.log(players);
   return (
     <>
-      <h1>Bowling Score Calculator!</h1>
+      <h1>Bowling Score Card!</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/players"
-          element={<Players players={players} setPlayers={setPlayers} />}
+          element={
+            <Players
+              players={players}
+              setPlayers={setPlayers}
+              frameCount={frameCount}
+              setFrameCount={setFrameCount}
+            />
+          }
         />
         <Route
           path="/play"
-          element={<Play players={players} setPlayers={setPlayers} />}
+          element={
+            <Play
+              players={players}
+              setPlayers={setPlayers}
+              frameCount={frameCount}
+              setFrameCount={setFrameCount}
+            />
+          }
         />
       </Routes>
     </>

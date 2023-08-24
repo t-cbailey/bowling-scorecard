@@ -2,7 +2,12 @@ import React from "react";
 import { PlayersProps } from "../../customTypes/customTypes";
 import { useNavigate } from "react-router-dom";
 
-function Players({ players, setPlayers }: PlayersProps) {
+function Players({
+  players,
+  setPlayers,
+  frameCount,
+  setFrameCount,
+}: PlayersProps) {
   const [name, setName] = React.useState("");
   const navigate = useNavigate();
 
@@ -35,6 +40,11 @@ function Players({ players, setPlayers }: PlayersProps) {
   const handleStartGame = () => {
     navigate("/play");
   };
+  const handleReset = () => {
+    setPlayers([]);
+    setFrameCount(0);
+    navigate("/");
+  };
   return (
     <>
       <h1>players</h1>
@@ -54,6 +64,7 @@ function Players({ players, setPlayers }: PlayersProps) {
         <button onClick={addPlayer}>Add</button>
       </form>
       <button onClick={handleStartGame}>Start Game!</button>
+      <button onClick={handleReset}>Reset</button>
     </>
   );
 }

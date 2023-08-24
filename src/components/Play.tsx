@@ -4,11 +4,12 @@ import React from "react";
 import GameOver from "./GameOver";
 import CurrentTurn from "./CurrentTurn";
 
-function Play({ players, setPlayers }: PlayProps) {
+function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
   const [playerIndex, setPlayerIndex] = React.useState<number>(0);
-  const [frameCount, setFrameCount] = React.useState<number>(0);
+
   const [turnCount, setTurnCount] = React.useState<turnCount>(0);
   const [buttonsDisabled, setButtonsDisabled] = React.useState<boolean>(false);
+  const [totalFrameScore, setTotalFrameScore] = React.useState<string>("-");
 
   const currentPlayer = players[playerIndex].name;
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function Play({ players, setPlayers }: PlayProps) {
       setButtonsDisabled(false);
     }
     setTurnCount(0);
+    setTotalFrameScore("-");
   };
 
   const handleReturnToPlayers = () => {
@@ -41,7 +43,6 @@ function Play({ players, setPlayers }: PlayProps) {
   } else
     return (
       <>
-        <h1>Play!</h1>
         <h2>{`Frame ${frameCount + 1}`} </h2>
         <h2>{`${currentPlayer}'s turn`}</h2>
         <CurrentTurn
@@ -53,6 +54,8 @@ function Play({ players, setPlayers }: PlayProps) {
           turnCount={turnCount}
           buttonsDisabled={buttonsDisabled}
           setButtonsDisabled={setButtonsDisabled}
+          totalFrameScore={totalFrameScore}
+          setTotalFrameScore={setTotalFrameScore}
         />
 
         <button onClick={handleNextPlayer}>
