@@ -1,14 +1,11 @@
-$primaryColor:red;
-$secondaryColor:blue;
-$boxHighlightColor:blue;
-$boxBackgrroundColor:rgb(190, 190, 255);
-
+@import "./index.scss";
 
 
 h1 {
-    color: $primaryColor;
+    color: $generalText;
+    text-align: center;
 }
-h2 {color:$secondaryColor}
+h2 {color:$generalText}
 
 #playBottomButtonsContainer{
     display: flex;

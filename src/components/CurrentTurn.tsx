@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CurrentTurnProps, Player } from "../../customTypes/customTypes";
 import "../Styling/currentTurn.scss";
+import { convertNumbers, calculateFrameScore } from "../utils/utils";
 
 function CurrentTurn({
   players,
@@ -61,30 +62,13 @@ function CurrentTurn({
     }
   }, [turnCount]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (Array.isArray(players[playerIndex].turns[frameCount])) {
       const turn1 = players[playerIndex].turns[frameCount][0] || "0";
       const turn2 = players[playerIndex].turns[frameCount][1] || "0";
       setTotalFrameScore(calculateFrameScore(turn1, turn2));
     }
   }, [turnCount]);
-
-  const calculateFrameScore = (input: string, input2: string) => {
-    if (input === "10" || input2 === "10") {
-      return "X";
-    } else if (+input + +input2 === 10) {
-      return "/";
-    } else return (+input + +input2).toString();
-  };
-
-  const convertNumbers = (input: string | undefined) => {
-    if (input === "10") {
-      return "X";
-    }
-    if (input === "0") {
-      return "-";
-    } else return input;
-  };
 
   return (
     <>

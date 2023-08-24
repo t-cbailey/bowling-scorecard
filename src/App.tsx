@@ -2,17 +2,42 @@ import "./App.scss";
 import Players from "./components/Players";
 import Home from "./components/Home";
 import Play from "./components/Play";
+import FullScore from "./components/FullScore";
 import React from "react";
 import { Player } from "../customTypes/customTypes";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [players, setPlayers] = React.useState<Player[]>([
-    { name: "tim", turns: [] },
-    { name: "aimee", turns: [] },
-    { name: "teddy", turns: [] },
-  ]);
   const [frameCount, setFrameCount] = React.useState<number>(0);
+  const [players, setPlayers] = React.useState<Player[]>([
+    {
+      name: "tim",
+      turns: [
+        ["10", "0"],
+        ["7", "3"],
+        ["3", "4"],
+        ["5", "5"],
+      ],
+    },
+    {
+      name: "aimee",
+      turns: [
+        ["10", "0"],
+        ["1", "2"],
+        ["0", "10"],
+        ["1", "6"],
+      ],
+    },
+    {
+      name: "teddy",
+      turns: [
+        ["10", "0"],
+        ["1", "2"],
+        ["1", "4"],
+        ["5", "2"],
+      ],
+    },
+  ]);
 
   return (
     <>
@@ -38,6 +63,16 @@ function App() {
               setPlayers={setPlayers}
               frameCount={frameCount}
               setFrameCount={setFrameCount}
+            />
+          }
+        />
+        <Route
+          path="/fullscore"
+          element={
+            <FullScore
+              players={players}
+              setPlayers={setPlayers}
+              frameCount={frameCount}
             />
           }
         />

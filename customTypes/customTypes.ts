@@ -42,5 +42,10 @@ export interface CurrentTurnProps {
   disableStrikeButton: boolean;
   setDisableStrikeButton: Function;
 }
-
 export type turnCount = 0 | 1 | 2;
+
+export interface FullScoreProps {
+  players: Player[];
+  setPlayers: Function;
+  frameCount: number;
+}

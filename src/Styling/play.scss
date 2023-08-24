@@ -1,0 +1,10 @@
+@import "../index.scss";
+
+
+.playBottomButton{
+    background-color: $primaryColor;
+    border: solid 5px $tertiaryColor;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px $highlight;
+  
+}

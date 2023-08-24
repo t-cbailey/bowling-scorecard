@@ -3,17 +3,16 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import GameOver from "./GameOver";
 import CurrentTurn from "./CurrentTurn";
+import "../Styling/play.scss";
 
 function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
   const [playerIndex, setPlayerIndex] = React.useState<number>(0);
-
   const [turnCount, setTurnCount] = React.useState<turnCount>(0);
   const [buttonsDisabled, setButtonsDisabled] = React.useState<boolean>(false);
   const [disableHSButton, setDisableHSButton] = React.useState<boolean>(true);
   const [totalFrameScore, setTotalFrameScore] = React.useState<string>("-");
   const [disableStrikeButton, setDisableStrikeButton] =
-    React.useState<boolean>(false);
-  React.useState<boolean>(true);
+    React.useState<boolean>(true);
 
   const navigate = useNavigate();
 
