@@ -37,6 +37,10 @@ export interface CurrentTurnProps {
   players: Player[];
   totalFrameScore: string;
   setTotalFrameScore: Function;
+  disableHSButton: boolean;
+  setDisableHSButton: Function;
+  disableStrikeButton: boolean;
+  setDisableStrikeButton: Function;
 }
 
 export type turnCount = 0 | 1 | 2;

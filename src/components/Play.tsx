@@ -9,9 +9,12 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
 
   const [turnCount, setTurnCount] = React.useState<turnCount>(0);
   const [buttonsDisabled, setButtonsDisabled] = React.useState<boolean>(false);
+  const [disableHSButton, setDisableHSButton] = React.useState<boolean>(true);
   const [totalFrameScore, setTotalFrameScore] = React.useState<string>("-");
+  const [disableStrikeButton, setDisableStrikeButton] =
+    React.useState<boolean>(false);
+  React.useState<boolean>(true);
 
-  const currentPlayer = players[playerIndex].name;
   const navigate = useNavigate();
 
   const handleNextPlayer = () => {
@@ -25,6 +28,8 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
     }
     setTurnCount(0);
     setTotalFrameScore("-");
+    setDisableHSButton(true);
+    setDisableStrikeButton(false);
   };
 
   const handleReturnToPlayers = () => {
@@ -44,7 +49,7 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
     return (
       <>
         <h2>{`Frame ${frameCount + 1}`} </h2>
-        <h2>{`${currentPlayer}'s turn`}</h2>
+
         <CurrentTurn
           players={players}
           setTurnCount={setTurnCount}
@@ -56,14 +61,22 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
           setButtonsDisabled={setButtonsDisabled}
           totalFrameScore={totalFrameScore}
           setTotalFrameScore={setTotalFrameScore}
+          disableHSButton={disableHSButton}
+          setDisableHSButton={setDisableHSButton}
+          disableStrikeButton={disableStrikeButton}
+          setDisableStrikeButton={setDisableStrikeButton}
         />
 
-        <button onClick={handleNextPlayer}>
-          {frameCount === 10 && playerIndex === players.length - 1
-            ? "Finish"
-            : "Next Player"}
-        </button>
-        <button onClick={handleReturnToPlayers}>Back to Add Players</button>
+        <div id="playBottomButtonsContainer">
+          <button onClick={handleReturnToPlayers} className="playBottomButton">
+            Back to Add Players
+          </button>
+          <button onClick={handleNextPlayer} className="playBottomButton">
+            {frameCount === 10 && playerIndex === players.length - 1
+              ? "Finish"
+              : "Next Player"}
+          </button>
+        </div>
       </>
     );
 }

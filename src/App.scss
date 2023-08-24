@@ -9,3 +9,16 @@ h1 {
     color: $primaryColor;
 }
 h2 {color:$secondaryColor}
+
+#playBottomButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+
+}
+
+.playBottomButton{
+    width: 30%;
+    height: 5vh;
+}

@@ -13,12 +13,15 @@ function CurrentTurn({
   setButtonsDisabled,
   totalFrameScore,
   setTotalFrameScore,
+  disableHSButton,
+  setDisableHSButton,
+  disableStrikeButton,
+  setDisableStrikeButton,
 }: CurrentTurnProps) {
-  const [disableHS, setDisableHS] = React.useState<boolean>(true);
+  const currentPlayer = players[playerIndex].name;
 
   const handleScoreSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     const targetName = (e.target as HTMLButtonElement).value;
-
     if (+targetName + +players[playerIndex].turns[frameCount] > 10) {
       setTurnCount(1);
       alert("max score is 10!");
@@ -29,11 +32,12 @@ function CurrentTurn({
             curr[playerIndex].turns[frameCount].push("10");
           } else {
             curr[playerIndex].turns.push(["10", "0"]);
+            setDisableHSButton(true);
             setButtonsDisabled(true);
+            setDisableStrikeButton(true);
           }
           return [...curr];
-        }
-        if (Array.isArray(curr[playerIndex].turns[frameCount])) {
+        } else if (Array.isArray(curr[playerIndex].turns[frameCount])) {
           curr[playerIndex].turns[frameCount].push(targetName);
         } else {
           curr[playerIndex].turns.push([targetName]);
@@ -41,18 +45,19 @@ function CurrentTurn({
         return [...curr];
       });
       setTurnCount(turnCount + 1);
+      setDisableStrikeButton(true);
     }
   };
 
   React.useEffect(() => {
     if (turnCount > 1) {
       setButtonsDisabled(true);
+      setDisableStrikeButton(true);
     }
-
-    if (turnCount === 1) {
-      setDisableHS(false);
+    if (turnCount === 1 && players[playerIndex].turns[frameCount][0] !== "10") {
+      setDisableHSButton(false);
     } else {
-      setDisableHS(true);
+      setDisableHSButton(true);
     }
   }, [turnCount]);
 
@@ -83,17 +88,20 @@ function CurrentTurn({
 
   return (
     <>
-      <div className="frameContainer">
-        <div className="outerTurnBox">
-          <div className="innerTurnBox">
-            {players[playerIndex].turns[frameCount] &&
-              convertNumbers(players[playerIndex].turns[frameCount][1])}
+      <div id="turnDataContainer">
+        <h2>{`${currentPlayer}'s turn`}</h2>
+        <div className="frameContainer">
+          <div className="outerTurnBox">
+            <div className="innerTurnBox">
+              {players[playerIndex].turns[frameCount] &&
+                convertNumbers(players[playerIndex].turns[frameCount][1])}
+            </div>
+            <div className="innerTurnBox">
+              {players[playerIndex].turns[frameCount] &&
+                convertNumbers(players[playerIndex].turns[frameCount][0])}
+            </div>
+            <p className="frameTotalScore">{totalFrameScore}</p>
           </div>
-          <div className="innerTurnBox">
-            {players[playerIndex].turns[frameCount] &&
-              convertNumbers(players[playerIndex].turns[frameCount][0])}
-          </div>
-          <p className="frameTotalScore">{totalFrameScore}</p>
         </div>
       </div>
       <ol id="turnButtonContainer">
@@ -179,7 +187,7 @@ function CurrentTurn({
         </button>
         <button
           className="turnButton"
-          disabled={disableHS}
+          disabled={disableHSButton}
           value={(10 - +players[playerIndex].turns[frameCount]).toString()}
           onClick={handleScoreSelect}
         >
@@ -187,7 +195,7 @@ function CurrentTurn({
         </button>
         <button
           className="turnButton"
-          disabled={buttonsDisabled}
+          disabled={disableStrikeButton}
           value={"10"}
           onClick={handleScoreSelect}
         >
