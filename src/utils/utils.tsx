@@ -21,6 +21,20 @@ export const calculateFrameScore = (input: string, input2: string): string => {
 };
 
 export const calculateGameScore = (frameArr: frame[]): string => {
-  console.log(frameArr);
-  return "0";
+  if (frameArr.length > 0) {
+    const summedArr = frameArr.map((frame, i) => {
+      if (frame[0] && frame[1]) {
+        if (+frame[0] + +frame[1] === 10 && frameArr[i + 1]) {
+          const addedHSPoints: string = frameArr[i + 1][0] ?? "0";
+          return +frame[0] + +frame[1] + +addedHSPoints;
+        } else return +frame[0] + +frame[1];
+      } else return 0;
+    });
+
+    return summedArr
+      .reduce((a, b) => {
+        return a + b;
+      })
+      .toString();
+  } else return "-";
 };
