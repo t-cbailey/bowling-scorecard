@@ -35,4 +35,41 @@ describe("calculateGameScore function", () => {
     ];
     expect(calculateGameScore(input)).toBe("33");
   });
+  test("should handle simple strike values", () => {
+    const input: frame[] = [
+      ["10", "0"],
+      ["1", "1"],
+    ];
+    expect(calculateGameScore(input)).toBe("14");
+  });
+  test("should handle consecutive strike values", () => {
+    const input: frame[] = [
+      ["10", "0"],
+      ["10", "0"],
+      ["9", "0"],
+    ];
+    expect(calculateGameScore(input)).toBe("57");
+  });
+  test("should handle mixed values (strike at end)", () => {
+    const input: frame[] = [
+      ["10", "0"],
+      ["0", "10"],
+      ["9", "1"],
+      ["1", "1"],
+      ["9", "1"],
+      ["10", "0"],
+    ];
+    expect(calculateGameScore(input)).toBe("82");
+  });
+  test("should handle mixed values (HS at end)", () => {
+    const input: frame[] = [
+      ["10", "0"],
+      ["0", "10"],
+      ["9", "1"],
+      ["1", "1"],
+      ["9", "1"],
+      ["9", "1"],
+    ];
+    expect(calculateGameScore(input)).toBe("81");
+  });
 });
