@@ -88,7 +88,10 @@ function CurrentTurn({
             </div>
             <div className="innerTurnBox">
               {players[playerIndex].frames[frameCount] &&
-                convertNumbers(players[playerIndex].frames[frameCount][0], 0)}
+                convertNumbers(
+                  players[playerIndex].frames[frameCount][0] || "0",
+                  0
+                )}
             </div>
             <p className="frameTotalScore">{totalFrameScore}</p>
           </div>

@@ -20,4 +20,7 @@ export const calculateFrameScore = (input: string, input2: string): string => {
   } else return "-";
 };
 
-// export const calculateGameScore = (frameArr: frame[]): string => {};
+export const calculateGameScore = (frameArr: frame[]): string => {
+  console.log(frameArr);
+  return "0";
+};

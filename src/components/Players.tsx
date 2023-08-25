@@ -21,7 +21,7 @@ function Players({
       return alert("Max 5 players");
     } else {
       if (name.length > 0) {
-        setPlayers([...players, { name: name, turns: [] }]);
+        setPlayers([...players, { name: name, frames: [], totalScore: "0" }]);
         setName("");
       }
     }

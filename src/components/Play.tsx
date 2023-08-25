@@ -4,6 +4,7 @@ import React from "react";
 import GameOver from "./GameOver";
 import CurrentTurn from "./CurrentTurn";
 import "../Styling/play.scss";
+import FullScore from "./FullScore";
 
 function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
   const [playerIndex, setPlayerIndex] = React.useState<number>(0);
@@ -35,14 +36,21 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
     navigate("/players");
   };
 
-  if (frameCount === 11) {
+  if (frameCount === 10) {
     return (
-      <GameOver
-        players={players}
-        setPlayers={setPlayers}
-        setFrameCount={setFrameCount}
-        setPlayerIndex={setPlayerIndex}
-      />
+      <>
+        <GameOver
+          players={players}
+          setPlayers={setPlayers}
+          setFrameCount={setFrameCount}
+          setPlayerIndex={setPlayerIndex}
+        />
+        <FullScore
+          players={players}
+          setPlayers={setPlayers}
+          frameCount={frameCount}
+        />
+      </>
     );
   } else
     return (
@@ -65,7 +73,6 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
           disableStrikeButton={disableStrikeButton}
           setDisableStrikeButton={setDisableStrikeButton}
         />
-
         <div id="playBottomButtonsContainer">
           <button onClick={handleReturnToPlayers} className="playBottomButton">
             Back to Add Players
@@ -76,6 +83,12 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
               : "Next Player"}
           </button>
         </div>
+
+        <FullScore
+          players={players}
+          setPlayers={setPlayers}
+          frameCount={frameCount}
+        />
       </>
     );
 }

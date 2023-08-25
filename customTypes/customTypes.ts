@@ -1,9 +1,10 @@
 export interface Player {
   name: string;
   frames: frame[];
+  totalScore: string;
 }
 
-export type frame = [string, string?];
+export type frame = [string?, string?];
 
 export interface PlayersProps {
   players: Player[];
