@@ -1,9 +1,9 @@
 export interface Player {
   name: string;
-  turns: turn[];
+  frames: frame[];
 }
 
-export type turn = [string, string?];
+export type frame = [string, string?];
 
 export interface PlayersProps {
   players: Player[];

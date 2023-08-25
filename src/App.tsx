@@ -12,7 +12,7 @@ function App() {
   const [players, setPlayers] = React.useState<Player[]>([
     {
       name: "tim",
-      turns: [
+      frames: [
         ["10", "0"],
         ["7", "3"],
         ["3", "4"],
@@ -21,7 +21,7 @@ function App() {
     },
     {
       name: "aimee",
-      turns: [
+      frames: [
         ["10", "0"],
         ["1", "2"],
         ["0", "10"],
@@ -30,7 +30,7 @@ function App() {
     },
     {
       name: "teddy",
-      turns: [
+      frames: [
         ["10", "0"],
         ["1", "2"],
         ["1", "4"],

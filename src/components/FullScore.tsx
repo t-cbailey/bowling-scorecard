@@ -12,18 +12,18 @@ function FullScore({ players, frameCount, setPlayers }: FullScoreProps) {
             <React.Fragment key={player.name}>
               <li>{player.name}</li>
               <ul id="singlePlayerScoreContainer">
-                {player.turns.map((turn, index) => {
+                {player.frames.map((frame, index) => {
                   return (
                     <li key={player.name + index} className="frameContainer">
                       <div className="outerTurnBox">
                         <div className="innerTurnBox">
-                          {convertNumbers(turn[1] || "0", 1)}
+                          {convertNumbers(frame[1] || "0", 1)}
                         </div>
                         <div className="innerTurnBox">
-                          {convertNumbers(turn[0], 0)}
+                          {convertNumbers(frame[0], 0)}
                         </div>
                         <p className="frameTotalScore">
-                          {calculateFrameScore(turn[0], turn[1] || "0")}
+                          {calculateFrameScore(frame[0], frame[1] || "0")}
                         </p>
                       </div>
                     </li>
