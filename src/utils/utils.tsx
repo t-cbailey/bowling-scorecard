@@ -28,8 +28,8 @@ export const calculateGameScore = (frameArr: frame[]): string => {
           const val1 = frameArr[i + 1] ? frameArr[i + 1][0] || "0" : "0";
           const val2 = frameArr[i + 1] ? frameArr[i + 1][1] || "0" : "0";
           if (val1 === "10") {
-            const val3 = frameArr[i + 2][0] ?? "0";
-            const val4 = frameArr[i + 2][1] ?? "0";
+            const val3 = frameArr[i + 2] ? frameArr[i + 2][0] || "0" : "0";
+            const val4 = frameArr[i + 2] ? frameArr[i + 2][1] || "0" : "0";
             const addedStrikePoints: string = (
               +val1 +
               +val2 +

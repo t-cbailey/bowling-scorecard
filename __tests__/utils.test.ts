@@ -72,4 +72,15 @@ describe("calculateGameScore function", () => {
     ];
     expect(calculateGameScore(input)).toBe("81");
   });
+  test("should handle mixed values (HS at end)", () => {
+    const input: frame[] = [
+      ["10", "0"],
+      ["0", "10"],
+      ["9", "1"],
+      ["1", "1"],
+      ["10", "0"],
+      ["10", "0"],
+    ];
+    expect(calculateGameScore(input)).toBe("81");
+  });
 });
