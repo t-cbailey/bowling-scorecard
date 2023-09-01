@@ -4,7 +4,7 @@ export interface Player {
   totalScore: string;
 }
 
-export type frame = [string?, string?];
+export type frame = [string?, string?, string?];
 
 export interface PlayersProps {
   players: Player[];

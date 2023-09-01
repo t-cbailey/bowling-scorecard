@@ -9,38 +9,7 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [frameCount, setFrameCount] = React.useState<number>(0);
-  const [players, setPlayers] = React.useState<Player[]>([
-    {
-      name: "tim",
-      frames: [
-        // ["10", "0"],
-        // ["7", "3"],
-        // ["3", "4"],
-        // ["5", "5"],
-      ],
-      totalScore: "0",
-    },
-    {
-      name: "aimee",
-      frames: [
-        // ["10", "0"],
-        // ["1", "2"],
-        // ["0", "10"],
-        // ["1", "6"],
-      ],
-      totalScore: "0",
-    },
-    {
-      name: "teddy",
-      frames: [
-        // ["10", "0"],
-        // ["1", "2"],
-        // ["1", "4"],
-        // ["5", "2"],
-      ],
-      totalScore: "0",
-    },
-  ]);
+  const [players, setPlayers] = React.useState<Player[]>([]);
 
   return (
     <>

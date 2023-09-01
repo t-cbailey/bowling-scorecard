@@ -1,5 +1,8 @@
 @import "../index.scss";
 
+#playBottomButtonsContainer{
+    max-width: 80%;
+}
 
 .playBottomButton{
     background-color: $primaryColor;
