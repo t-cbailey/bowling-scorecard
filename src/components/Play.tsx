@@ -13,7 +13,7 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
   const [disableHSButton, setDisableHSButton] = React.useState<boolean>(true);
   const [totalFrameScore, setTotalFrameScore] = React.useState<string>("-");
   const [disableStrikeButton, setDisableStrikeButton] =
-    React.useState<boolean>(true);
+    React.useState<boolean>(false);
   const [disableNextButton, setDisableNextButton] =
     React.useState<boolean>(true);
 
@@ -41,10 +41,17 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
 
   React.useEffect(() => {
     players.forEach((player) => {
-      if (player.frames[frameCount]) {
-        player.frames[frameCount].length < 2
-          ? setDisableNextButton(true)
-          : setDisableNextButton(false);
+      if (player.frames[frameCount] && frameCount < 9) {
+        if (
+          player.frames[frameCount].length < 2 &&
+          player.frames[frameCount][0] !== "10"
+        ) {
+          setDisableNextButton(true);
+        } else {
+          setDisableNextButton(false);
+        }
+      } else if (player.frames[frameCount] && frameCount === 9) {
+        setDisableNextButton(false);
       }
     });
   }, [players]);
@@ -95,7 +102,7 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
             className="playBottomButton"
             disabled={disableNextButton}
           >
-            {frameCount === 10 && playerIndex === players.length - 1
+            {frameCount === 9 && playerIndex === players.length - 1
               ? "Finish"
               : playerIndex === players.length - 1
               ? "Next Frame"

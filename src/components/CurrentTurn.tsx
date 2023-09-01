@@ -23,7 +23,11 @@ function CurrentTurn({
 
   const handleScoreSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     const targetName = (e.target as HTMLButtonElement).value;
-    if (+targetName + +players[playerIndex].frames[frameCount] > 10) {
+
+    if (
+      +targetName + +players[playerIndex].frames[frameCount] > 10 &&
+      players[playerIndex].frames[frameCount][0] !== "10"
+    ) {
       setTurnCount(1);
       alert("max score is 10!");
     } else {
@@ -32,10 +36,9 @@ function CurrentTurn({
           if (Array.isArray(curr[playerIndex].frames[frameCount])) {
             curr[playerIndex].frames[frameCount].push("10");
           } else {
-            curr[playerIndex].frames.push(["10", "0"]);
-            setDisableHSButton(true);
-            setButtonsDisabled(true);
-            setDisableStrikeButton(true);
+            curr[playerIndex].frames.push(
+              frameCount < 9 ? ["10", "0"] : ["10"]
+            );
           }
           return [...curr];
         } else if (Array.isArray(curr[playerIndex].frames[frameCount])) {
@@ -46,30 +49,64 @@ function CurrentTurn({
         return [...curr];
       });
       setTurnCount(turnCount + 1);
-      setDisableStrikeButton(true);
     }
   };
 
-  React.useEffect(() => {
-    if (turnCount > 1) {
-      setButtonsDisabled(true);
-      setDisableStrikeButton(true);
-    }
-    if (
-      turnCount === 1 &&
-      players[playerIndex].frames[frameCount][0] !== "10"
-    ) {
-      setDisableHSButton(false);
-    } else {
-      setDisableHSButton(true);
-    }
-  }, [turnCount]);
-
+  // Input Button enabling/disabling
   React.useEffect(() => {
     if (Array.isArray(players[playerIndex].frames[frameCount])) {
       const turn1 = players[playerIndex].frames[frameCount][0] || "0";
       const turn2 = players[playerIndex].frames[frameCount][1] || "0";
-      setTotalFrameScore(calculateFrameScore(turn1, turn2));
+      const turn3 = players[playerIndex].frames[frameCount][2] || "0";
+      setTotalFrameScore(calculateFrameScore(turn1, turn2, turn3));
+      if (frameCount < 9) {
+        if (turnCount > 1) {
+          setButtonsDisabled(true);
+          setDisableStrikeButton(true);
+          setDisableHSButton(true);
+        }
+        if (turnCount === 1) {
+          if (turn1 === "10" || +turn1 + +turn2 === 10) {
+            setButtonsDisabled(true);
+            setDisableHSButton(true);
+            setDisableStrikeButton(true);
+          } else if (turn1 !== "0") {
+            setDisableStrikeButton(true);
+            setDisableHSButton(false);
+          } else {
+            setDisableHSButton(false);
+          }
+        }
+      } else {
+        //Final Frame Block
+        if (turnCount > 2) {
+          setButtonsDisabled(true);
+          setDisableStrikeButton(true);
+          setDisableHSButton(true);
+        }
+        if (turnCount === 1) {
+          if (+turn1 < 10) {
+            setDisableStrikeButton(true);
+            setDisableHSButton(false);
+          } else if (+turn1 + +turn2 < 10) {
+            setButtonsDisabled(true);
+            setDisableStrikeButton(true);
+            setDisableHSButton(true);
+          }
+        }
+        if (turnCount === 2) {
+          if (+turn1 + +turn2 < 10) {
+            setButtonsDisabled(true);
+            setDisableStrikeButton(true);
+            setDisableHSButton(true);
+          } else if (+turn1 + +turn2 === 10) {
+            setDisableStrikeButton(false);
+            setDisableHSButton(true);
+          } else if (turn1 !== "10" || turn2 !== "10") {
+            setDisableHSButton(true);
+          }
+        }
+      }
     }
   }, [turnCount]);
 
@@ -79,6 +116,15 @@ function CurrentTurn({
         <h2>{`${currentPlayer}'s turn`}</h2>
         <div className="frameContainer">
           <div className="outerTurnBox">
+            {frameCount === 9 && (
+              <div className="innerTurnBox">
+                {players[playerIndex].frames[frameCount] &&
+                  convertNumbers(
+                    players[playerIndex].frames[frameCount][2] || "0",
+                    2
+                  )}
+              </div>
+            )}
             <div className="innerTurnBox">
               {players[playerIndex].frames[frameCount] &&
                 convertNumbers(

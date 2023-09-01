@@ -29,7 +29,8 @@ function FullScore({ players, frameCount, setPlayers }: FullScoreProps) {
                         <p className="frameTotalScore">
                           {calculateFrameScore(
                             frame[0] || "0",
-                            frame[1] || "0"
+                            frame[1] || "0",
+                            frame[2] || "0"
                           )}
                         </p>
                       </div>

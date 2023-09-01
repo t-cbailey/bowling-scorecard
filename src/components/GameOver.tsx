@@ -1,4 +1,4 @@
-import { GameOverProps } from "../../customTypes/customTypes";
+import { GameOverProps, Player } from "../../customTypes/customTypes";
 import { useNavigate } from "react-router-dom";
 function GameOver({
   players,
@@ -10,6 +10,12 @@ function GameOver({
   const handlePlayAgain = () => {
     setFrameCount(0);
     setPlayerIndex(0);
+    setPlayers((curr: Player[]) => {
+      curr.forEach((player) => {
+        player.frames = [];
+      });
+      return curr;
+    });
     navigate("/play");
   };
 
