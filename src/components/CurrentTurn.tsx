@@ -19,7 +19,7 @@ function CurrentTurn({
   disableStrikeButton,
   setDisableStrikeButton,
 }: CurrentTurnProps) {
-  const currentPlayer = players[playerIndex].name;
+  const currentPlayer = players[playerIndex].name || "-";
 
   const handleScoreSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     const targetName = (e.target as HTMLButtonElement).value;

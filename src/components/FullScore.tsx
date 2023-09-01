@@ -20,6 +20,12 @@ function FullScore({ players, frameCount, setPlayers }: FullScoreProps) {
                   return (
                     <li key={player.name + index} className="frameContainer">
                       <div className="outerTurnBox">
+                        {index === 9 && (
+                          <div className="innerTurnBox">
+                            {convertNumbers(frame[2] || "0", 2)}
+                          </div>
+                        )}
+
                         <div className="innerTurnBox">
                           {convertNumbers(frame[1] || "0", 1)}
                         </div>
