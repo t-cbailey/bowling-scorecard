@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <h1>Bowling Score Card!</h1>
+      <h1>Ten Pin Tracker</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

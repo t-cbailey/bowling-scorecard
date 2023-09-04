@@ -1,0 +1,24 @@
+#homeImg {
+    max-width: 20%;
+    margin: auto;
+}
+
+#homeContainer{
+    max-width: 90%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#startButton{
+   margin-top: 10vh;
+   
+}
+
+#homeText{
+
+    padding: 10px;
+}

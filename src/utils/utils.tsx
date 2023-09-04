@@ -1,10 +1,19 @@
 import { frame } from "../../customTypes/customTypes";
 
-export const convertNumbers = (input: string, index: number): string => {
+export const convertNumbers = (
+  frameCount: number,
+  input: string,
+  index: number
+): string => {
+  console.log(frameCount);
   if (index === 0 && input === "10") {
+    return "X";
+  } else if (index === 1 && input === "10" && frameCount >= 9) {
     return "X";
   } else if (index === 1 && input === "10") {
     return "/";
+  } else if (index === 2 && input === "10") {
+    return "X";
   } else if (input === "0") {
     return "-";
   } else return input;

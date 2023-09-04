@@ -7,7 +7,7 @@ import {
 } from "../utils/utils";
 import "../Styling/fullScore.scss";
 
-function FullScore({ players }: FullScoreProps) {
+function FullScore({ players, frameCount }: FullScoreProps) {
   return (
     <>
       <ul>
@@ -22,15 +22,15 @@ function FullScore({ players }: FullScoreProps) {
                       <div className="outerTurnBox">
                         {index === 9 && (
                           <div className="innerTurnBox">
-                            {convertNumbers(frame[2] || "0", 2)}
+                            {convertNumbers(frameCount, frame[2] || "0", 2)}
                           </div>
                         )}
 
                         <div className="innerTurnBox">
-                          {convertNumbers(frame[1] || "0", 1)}
+                          {convertNumbers(frameCount, frame[1] || "0", 1)}
                         </div>
                         <div className="innerTurnBox">
-                          {convertNumbers(frame[0] || "0", 0)}
+                          {convertNumbers(frameCount, frame[0] || "0", 0)}
                         </div>
                         <p className="frameTotalScore">
                           {calculateFrameScore(

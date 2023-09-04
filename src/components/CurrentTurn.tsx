@@ -127,6 +127,7 @@ function CurrentTurn({
                 <div className="innerTurnBox">
                   {players[playerIndex].frames[frameCount] &&
                     convertNumbers(
+                      frameCount,
                       players[playerIndex].frames[frameCount][2] || "0",
                       2
                     )}
@@ -135,6 +136,7 @@ function CurrentTurn({
               <div className="innerTurnBox">
                 {players[playerIndex].frames[frameCount] &&
                   convertNumbers(
+                    frameCount,
                     players[playerIndex].frames[frameCount][1] || "0",
                     1
                   )}
@@ -142,6 +144,7 @@ function CurrentTurn({
               <div className="innerTurnBox">
                 {players[playerIndex].frames[frameCount] &&
                   convertNumbers(
+                    frameCount,
                     players[playerIndex].frames[frameCount][0] || "0",
                     0
                   )}

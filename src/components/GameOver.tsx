@@ -1,5 +1,6 @@
 import { GameOverProps, Player } from "../../customTypes/customTypes";
 import { useNavigate } from "react-router-dom";
+import "../Styling/gameOver.scss";
 function GameOver({
   setPlayers,
   setFrameCount,

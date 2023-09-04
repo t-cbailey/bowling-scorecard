@@ -1,6 +1,7 @@
 import React from "react";
 import { PlayersProps } from "../../customTypes/customTypes";
 import { useNavigate } from "react-router-dom";
+import "../Styling/players.scss";
 
 function Players({ players, setPlayers, setFrameCount }: PlayersProps) {
   const [name, setName] = React.useState("");
@@ -50,26 +51,41 @@ function Players({ players, setPlayers, setFrameCount }: PlayersProps) {
   }, [players]);
   return (
     <>
-      <h1>players</h1>
-      <ul>Current Players</ul>
-      {players.map((player) => {
-        return (
-          <div key={player.name}>
-            <li>{player.name}</li>
-            <button value={player.name} onClick={handleRemovePlayer}>
-              X
-            </button>
-          </div>
-        );
-      })}
+      <h2>Add some players...</h2>
+      <ul>
+        {players.map((player) => {
+          return (
+            <div key={player.name}>
+              <li>
+                {player.name}{" "}
+                <button
+                  className="removePlayerButton"
+                  value={player.name}
+                  onClick={handleRemovePlayer}
+                >
+                  ❌
+                </button>
+              </li>
+            </div>
+          );
+        })}
+      </ul>
       <form>
         <input type="text" value={name} onChange={handleNameChange} />
         <button onClick={addPlayer}>Add</button>
       </form>
-      <button disabled={startButtonDisabled} onClick={handleStartGame}>
-        Start Game!
-      </button>
-      <button onClick={handleReset}>Reset</button>
+      <div className="bottomButtons">
+        <button
+          className="bottomButton"
+          disabled={startButtonDisabled}
+          onClick={handleStartGame}
+        >
+          Start Game!
+        </button>
+        <button className="bottomButton" onClick={handleReset}>
+          Reset
+        </button>
+      </div>
     </>
   );
 }
