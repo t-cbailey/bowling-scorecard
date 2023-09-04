@@ -7,7 +7,7 @@ import {
 } from "../utils/utils";
 import "../Styling/fullScore.scss";
 
-function FullScore({ players, frameCount, setPlayers }: FullScoreProps) {
+function FullScore({ players }: FullScoreProps) {
   return (
     <>
       <ul>

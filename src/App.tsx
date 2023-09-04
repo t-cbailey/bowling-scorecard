@@ -11,6 +11,17 @@ function App() {
   const [frameCount, setFrameCount] = React.useState<number>(0);
   const [players, setPlayers] = React.useState<Player[]>([]);
 
+  React.useEffect(() => {
+    const unloadCallback = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = "";
+      return "";
+    };
+
+    window.addEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback);
+  }, []);
+
   return (
     <>
       <h1>Bowling Score Card!</h1>
