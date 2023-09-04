@@ -51,7 +51,23 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
           setDisableNextButton(false);
         }
       } else if (player.frames[frameCount] && frameCount === 9) {
-        setDisableNextButton(false);
+        const turn1 = players[playerIndex].frames[frameCount][0] || 0;
+        const turn2 = players[playerIndex].frames[frameCount][1] || 0;
+        const turn3 = players[playerIndex].frames[frameCount][2] || 0;
+
+        if (
+          turn1 === "10" ||
+          turn2 === "10" ||
+          +turn1 + +turn2 === 10 ||
+          !turn2 ||
+          !turn1
+        ) {
+          setDisableNextButton(true);
+        } else setDisableNextButton(false);
+
+        if (turn3) {
+          setDisableNextButton(false);
+        }
       }
     });
   }, [players]);

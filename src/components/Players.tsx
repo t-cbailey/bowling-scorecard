@@ -9,6 +9,7 @@ function Players({
   setFrameCount,
 }: PlayersProps) {
   const [name, setName] = React.useState("");
+  const [startButtonDisabled, setStartButtonDisabled] = React.useState(false);
   const navigate = useNavigate();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +46,12 @@ function Players({
     setFrameCount(0);
     navigate("/");
   };
+
+  React.useEffect(() => {
+    players.length < 1
+      ? setStartButtonDisabled(true)
+      : setStartButtonDisabled(false);
+  }, [players]);
   return (
     <>
       <h1>players</h1>
@@ -63,7 +70,9 @@ function Players({
         <input type="text" value={name} onChange={handleNameChange} />
         <button onClick={addPlayer}>Add</button>
       </form>
-      <button onClick={handleStartGame}>Start Game!</button>
+      <button disabled={startButtonDisabled} onClick={handleStartGame}>
+        Start Game!
+      </button>
       <button onClick={handleReset}>Reset</button>
     </>
   );
