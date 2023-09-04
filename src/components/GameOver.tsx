@@ -1,7 +1,6 @@
 import { GameOverProps, Player } from "../../customTypes/customTypes";
 import { useNavigate } from "react-router-dom";
 function GameOver({
-  players,
   setPlayers,
   setFrameCount,
   setPlayerIndex,

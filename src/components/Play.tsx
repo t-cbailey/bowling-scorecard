@@ -36,7 +36,19 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
   };
 
   const handleReturnToPlayers = () => {
-    navigate("/players");
+    const returnToPlayers = () => {
+      setPlayers([]);
+      setFrameCount(0);
+      navigate("/players");
+    };
+
+    const result = confirm("Game score will be lost. Are you sure?");
+
+    if (result === true) {
+      returnToPlayers();
+    } else {
+      null;
+    }
   };
 
   React.useEffect(() => {
