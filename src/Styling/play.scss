@@ -1,5 +1,11 @@
 @import "../index.scss";
 
+#playContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 #playBottomButtonsContainer{
     max-width: 80%;
     display: flex;
@@ -18,4 +24,19 @@ padding: 2px;
 width: auto;
 height: auto;
   
+}
+
+#gameOverContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+   
+    
+    
+}
+@media only screen and (min-width: 768px){
+    #playBottomButtonsContainer{
+        max-width: 50%;   
+    }
 }

@@ -10,7 +10,7 @@ import "../Styling/fullScore.scss";
 function FullScore({ players, frameCount }: FullScoreProps) {
   return (
     <>
-      <ul>
+      <ul id="scoreListContainer">
         {players.map((player) => {
           return (
             <React.Fragment key={player.name}>

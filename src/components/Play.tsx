@@ -87,62 +87,71 @@ function Play({ players, setPlayers, frameCount, setFrameCount }: PlayProps) {
   if (frameCount === 10) {
     return (
       <>
-        <GameOver
-          players={players}
-          setPlayers={setPlayers}
-          setFrameCount={setFrameCount}
-          setPlayerIndex={setPlayerIndex}
-        />
-        <FullScore
-          players={players}
-          setPlayers={setPlayers}
-          frameCount={frameCount}
-        />
+        <div id="gameOverContainer">
+          <GameOver
+            players={players}
+            setPlayers={setPlayers}
+            setFrameCount={setFrameCount}
+            setPlayerIndex={setPlayerIndex}
+          />
+          <FullScore
+            players={players}
+            setPlayers={setPlayers}
+            frameCount={frameCount}
+          />
+        </div>
       </>
     );
   } else
     return (
       <>
-        <h2>{`Frame ${frameCount + 1}`} </h2>
+        <div id="playContainer">
+          <h2>{`Frame ${frameCount + 1}`} </h2>
 
-        <CurrentTurn
-          players={players}
-          setTurnCount={setTurnCount}
-          frameCount={frameCount}
-          setPlayers={setPlayers}
-          playerIndex={playerIndex}
-          turnCount={turnCount}
-          buttonsDisabled={buttonsDisabled}
-          setButtonsDisabled={setButtonsDisabled}
-          totalFrameScore={totalFrameScore}
-          setTotalFrameScore={setTotalFrameScore}
-          disableHSButton={disableHSButton}
-          setDisableHSButton={setDisableHSButton}
-          disableStrikeButton={disableStrikeButton}
-          setDisableStrikeButton={setDisableStrikeButton}
-        />
-        <div id="playBottomButtonsContainer">
-          <button onClick={handleReturnToPlayers} className="playBottomButton">
-            Back to Add Players
-          </button>
-          <button
-            onClick={handleNextPlayer}
-            className="playBottomButton"
-            disabled={disableNextButton}
-          >
-            {frameCount === 9 && playerIndex === players.length - 1
-              ? "Finish"
-              : playerIndex === players.length - 1
-              ? "Next Frame"
-              : "Next Player"}
-          </button>
+          <div>
+            <CurrentTurn
+              players={players}
+              setTurnCount={setTurnCount}
+              frameCount={frameCount}
+              setPlayers={setPlayers}
+              playerIndex={playerIndex}
+              turnCount={turnCount}
+              buttonsDisabled={buttonsDisabled}
+              setButtonsDisabled={setButtonsDisabled}
+              totalFrameScore={totalFrameScore}
+              setTotalFrameScore={setTotalFrameScore}
+              disableHSButton={disableHSButton}
+              setDisableHSButton={setDisableHSButton}
+              disableStrikeButton={disableStrikeButton}
+              setDisableStrikeButton={setDisableStrikeButton}
+            />
+            <div id="playBottomButtonsContainer">
+              <button
+                onClick={handleReturnToPlayers}
+                className="playBottomButton"
+              >
+                Back to Add Players
+              </button>
+              <button
+                onClick={handleNextPlayer}
+                className="playBottomButton"
+                disabled={disableNextButton}
+              >
+                {frameCount === 9 && playerIndex === players.length - 1
+                  ? "Finish"
+                  : playerIndex === players.length - 1
+                  ? "Next Frame"
+                  : "Next Player"}
+              </button>
+            </div>
+          </div>
+
+          <FullScore
+            players={players}
+            setPlayers={setPlayers}
+            frameCount={frameCount}
+          />
         </div>
-
-        <FullScore
-          players={players}
-          setPlayers={setPlayers}
-          frameCount={frameCount}
-        />
       </>
     );
 }

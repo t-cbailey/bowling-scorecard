@@ -1,10 +1,15 @@
 @import "../index.scss";
+.singleFrameContainer{
+    background-color: $secondaryColor;
+    border: solid 2px $tertiaryColor;
+   min-width: 20%
+}
+
 
 .frameContainer{
     background-color: $secondaryColor;
     border: solid 2px $tertiaryColor;
-    height:100px;
-    width: 100px;
+   
 }
 .outerTurnBox{
     width: 100%;
@@ -22,11 +27,26 @@
     height:100%;
     width:20%;
     text-align: center;
+    font-size: 0.5rem;
+
+}
+.singleInnerTurnBox{
+    background-color: $secondaryColor;
+    border-left: solid 2px $tertiaryColor;
+    border-bottom: solid 2px $tertiaryColor;
+    height:100%;
+    width:20%;
+    text-align: center;
+    font-size: 0.5rem;
 
 }
 
 .frameTotalScore{
-font-size: xx-large;
+font-size: 1rem;
+padding: 1%;
+}
+.singleFrameTotalScore{
+    font-size: 1.5rem;
 }
 
 #turnButtonContainer{
@@ -44,7 +64,7 @@ font-size: xx-large;
     width: 45%;
     margin:2px;
     border: 3px solid $tertiaryColor;
-    background-color: $primaryColor;
+    background-color: $secondaryColor;
     font-size: larger;
     border-radius: 5px;
     box-shadow: 2px 2px 2px $highlight;
@@ -57,8 +77,32 @@ font-size: xx-large;
     justify-content: space-around;
     max-width: 80%;
     margin-left: 10%;
+    max-height:100% ;
+}
+
+@media only screen and (min-width: 768px){
+    .innerTurnBox{
+        font-size: 2rem;
+    
+    }
+    .frameTotalScore{
+        font-size: 4rem;
+        }
 }
     
+@media only screen and (min-width: 900px){
 
+    #turnButtonContainer{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 50vh;
+        justify-content: center;
+        padding:0px;
+        max-width: 70%;
+        margin-left: 10%;
+    }
+
+}
 
 

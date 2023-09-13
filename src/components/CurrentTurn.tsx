@@ -121,10 +121,10 @@ function CurrentTurn({
       <>
         <div id="turnDataContainer">
           <h2>{`${currentPlayer}'s turn`}</h2>
-          <div className="frameContainer">
+          <div className="singleFrameContainer">
             <div className="outerTurnBox">
               {frameCount === 9 && (
-                <div className="innerTurnBox">
+                <div className="singleInnerTurnBox">
                   {players[playerIndex].frames[frameCount] &&
                     convertNumbers(
                       frameCount,
@@ -133,7 +133,7 @@ function CurrentTurn({
                     )}
                 </div>
               )}
-              <div className="innerTurnBox">
+              <div className="singleInnerTurnBox">
                 {players[playerIndex].frames[frameCount] &&
                   convertNumbers(
                     frameCount,
@@ -141,7 +141,7 @@ function CurrentTurn({
                     1
                   )}
               </div>
-              <div className="innerTurnBox">
+              <div className="singleInnerTurnBox">
                 {players[playerIndex].frames[frameCount] &&
                   convertNumbers(
                     frameCount,
@@ -149,7 +149,7 @@ function CurrentTurn({
                     0
                   )}
               </div>
-              <p className="frameTotalScore">{totalFrameScore}</p>
+              <p className="singleFrameTotalScore">{totalFrameScore}</p>
             </div>
           </div>
         </div>

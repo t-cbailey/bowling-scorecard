@@ -2,15 +2,20 @@
 @import "../Styling/currentTurn.scss";
 
 #singlePlayerScoreContainer{
+    align-self: center;
     display: flex;
     flex-direction: row;
-    padding: 10px;
-    width: 80%;
+    justify-content: center;
+    
+    max-width: 70%;
+    
     
 }
-
-ul{
+#scoreListContainer{
     list-style: none;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 90%;
 }
 

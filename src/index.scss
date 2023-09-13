@@ -4,18 +4,19 @@ $tertiaryColor: #E9B384;
 $highlight: #7C9D96;
 $generalText: black;
 
-
-
-
 :root{
     box-sizing: border-box;
-    max-width: 100%;
+    min-width: 100%;
+    min-height: 100%;
     margin: 0;
     padding:0;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
   line-height: 1.5;
-  background-color: whitesmoke;
+  background-color: $primaryColor;
   text-align: center;
-
+border: 10px solid white;
 
 }
+
+ul{list-style: none;}
+
